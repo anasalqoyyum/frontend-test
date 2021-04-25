@@ -30,7 +30,7 @@ const ImageGallery = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:8080/feeds?tags=${tags}`).then((res) => {
+    axios.get(`https://api.anasalqoyyum.com/feeds?tags=${tags}`).then((res) => {
       setData(res.data.items);
       // console.log("ini query " + tags + " Kosong");
     });
