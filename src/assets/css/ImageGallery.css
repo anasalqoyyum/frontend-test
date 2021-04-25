@@ -21,3 +21,8 @@
 .result {
   text-align: center;
 }
+
+.pagination {
+  margin-top: 0.5em;
+  justify-content: center;
+}

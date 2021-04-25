@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import NotFound from "../components/NotFound"
+import Pagination from "react-js-pagination";
+
+import NotFound from "../components/NotFound";
 
 import "../assets/css/ImageGallery.css";
 
@@ -13,6 +15,18 @@ const ImageGallery = () => {
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const dataPerPage = 12;
+  const [activePage, setCurrentPage] = useState(1);
+
+  // Logic for displaying current data
+  const indexOfLastData = activePage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = data.slice(indexOfFirstData, indexOfLastData);
+
+  const handlePageChange = (pageNumber) => {
+    console.log(`active page is ${pageNumber}`);
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -28,13 +42,11 @@ const ImageGallery = () => {
   return (
     <>
       <div className="container">
-        <h2 className="result">
-          {photosExist ? tags + " Pictures" : ""}
-        </h2>
+        <h2 className="result">{photosExist ? tags + " Pictures" : ""}</h2>
         <div className="d-flex flex-row flex-wrap justify-content-center">
           {loading && <div>Loading...</div>}
           {!loading && photosExist ? (
-            data.map((x, index) => (
+            currentData.map((x, index) => (
               <div className="d-flex flex-column media-gallery" key={index}>
                 <a href={x.link} target="_blank" rel="noreferrer">
                   {" "}
@@ -49,6 +61,17 @@ const ImageGallery = () => {
           ) : (
             <NotFound query={tags} />
           )}
+        </div>
+        <div className="pagination">
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={12}
+            totalItemsCount={data.length}
+            pageRangeDisplayed={3}
+            onChange={handlePageChange}
+            itemClass="page-item"
+            linkClass="page-link"
+          />
         </div>
       </div>
     </>
