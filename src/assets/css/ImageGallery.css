@@ -1,3 +1,19 @@
-.img-grid {
-  margin-top: 3rem;
+.img-gallery {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.media-gallery {
+  margin: 0.5em;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.media-gallery img {
+  transition: transform .5s ease;
+}
+
+.media-gallery:hover img {
+  transform: scale(1.2);
 }

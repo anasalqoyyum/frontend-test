@@ -1,53 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../assets/css/ImageGallery.css";
 
 const ImageGallery = () => {
+  const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect((query) => {
+    setLoading(true);
+    query = " "
+    axios.get(`http://localhost:8080/feeds?tags=${query}`).then((res) => {
+      setData(res.data.items);
+      // console.log("ini query " + query);
+    });
+    setLoading(false);
+  }, []);
+
   return (
-    <div className="container-fluid">
-      <div class="img-grid row">
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-          <img
-            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt=""
-          />
-
-          <img
-            src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt=""
-          />
-        </div>
-
-        <div class="col-lg-4 mb-4 mb-lg-0">
-          <img
-            src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt=""
-          />
-
-          <img
-            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt=""
-          />
-        </div>
-
-        <div class="col-lg-4 mb-4 mb-lg-0">
-          <img
-            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt=""
-          />
-
-          <img
-            src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt=""
-          />
+    <>
+      <div className="container">
+        <div className="d-flex flex-row flex-wrap justify-content-center">
+          {loading && <div>Loading...</div>}
+          {!loading &&
+            data.map((x, index) => (
+              <div className="d-flex flex-column media-gallery" key={index}>
+                <a href={x.link}>
+                  {" "}
+                  <img
+                    src={x.media.m}
+                    alt={x.title}
+                    className="img-gallery img-fluid"
+                  />
+                </a>
+              </div>
+            ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
