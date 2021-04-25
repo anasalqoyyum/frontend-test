@@ -5,7 +5,7 @@ const Title = () => {
   return (
     <>
       <div className="title">
-        <h2>Flickr Public Gallery</h2>
+        <h2 className="main-title">Flickr Public Gallery</h2>
         <p>Public images feed that you can access and enjoy.</p>
       </div>
     </>

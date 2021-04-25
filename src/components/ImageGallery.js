@@ -24,7 +24,7 @@ const ImageGallery = () => {
   const currentData = data.slice(indexOfFirstData, indexOfLastData);
 
   const handlePageChange = (pageNumber) => {
-    console.log(`active page is ${pageNumber}`);
+    // console.log(`active page is ${pageNumber}`);
     setCurrentPage(pageNumber);
   };
 
@@ -32,10 +32,10 @@ const ImageGallery = () => {
     setLoading(true);
     axios.get(`http://localhost:8080/feeds?tags=${tags}`).then((res) => {
       setData(res.data.items);
-      console.log("ini query " + tags);
+      // console.log("ini query " + tags + " Kosong");
     });
     setLoading(false);
-  }, []);
+  }, [tags]);
 
   let photosExist = data.length;
 

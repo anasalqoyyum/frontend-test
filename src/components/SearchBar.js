@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import "../assets/css/SearchBar.css";
 
-const SearchBar = (props) => {
+const SearchBar = () => {
   let history = useHistory();
   const [tags, setTags] = useState("");
 
@@ -34,6 +34,7 @@ const SearchBar = (props) => {
               <input
                 id="tags"
                 type="text"
+                name="tags"
                 placeholder="What are you looking for?"
                 className="form-control form-control-underlined"
                 onChange={handleChange}
@@ -42,7 +43,7 @@ const SearchBar = (props) => {
             <div className="form-group col-md-10">
               <button
                 type="submit"
-                className="btn btn-primary rounded-pill btn-block shadow-sm"
+                className="search btn btn-primary rounded-pill btn-block shadow-sm"
               >
                 Search
               </button>
