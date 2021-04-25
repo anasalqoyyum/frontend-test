@@ -1,11 +1,17 @@
 import Title from "../components/Title";
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 
-describe("Title should render without crashing and correctly", () => {
-  test("Title Components renders the text inside it", () => {
-    const wrapper = mount(<Title />);
-    const h2 = wrapper.find(".main-title");
-    expect(h2.text()).toBe("Flickr Public Gallery");
+describe("Title render", () => {
+  it("render main-title", () => {
+    const wrapper = shallow(<Title />);
+    const h2 = <h2 className="main-title">Flickr Public Gallery</h2>;
+    expect(wrapper.contains(h2)).toEqual(true);
+  });
+
+  it("render sub-title", () => {
+    const wrapper = shallow(<Title />);
+    const p = <p>Public images feed that you can access and enjoy.</p>;
+    expect(wrapper.contains(p)).toEqual(true);
   });
 });

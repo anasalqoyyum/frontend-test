@@ -37,6 +37,7 @@ const SearchBar = () => {
                 name="tags"
                 placeholder="What are you looking for?"
                 className="form-control form-control-underlined"
+                value={tags}
                 onChange={handleChange}
               />
             </div>
