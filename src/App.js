@@ -10,7 +10,12 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
+          <Title />
+          <SearchBar />
+          <ImageGallery />
+        </Route>
+        <Route path="/:tags">
           <Title />
           <SearchBar />
           <ImageGallery />

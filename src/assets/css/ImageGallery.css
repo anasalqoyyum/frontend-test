@@ -17,3 +17,7 @@
 .media-gallery:hover img {
   transform: scale(1.2);
 }
+
+.result {
+  text-align: center;
+}

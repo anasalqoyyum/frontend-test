@@ -5,20 +5,18 @@ import "../assets/css/SearchBar.css";
 
 const SearchBar = (props) => {
   let history = useHistory();
-  const [query, setQuery] = useState("");
+  const [tags, setTags] = useState("");
 
-  const handleChange = (e) => setQuery(e.target.value);
+  const handleChange = (e) => setTags(e.target.value);
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    let searchInput = query;
+    let searchInput = tags;
     let path = `/${searchInput}`;
 
     //Clear input field
     searchInput = "";
 
     //Redirect page by pushing url path into history
-    history.push(path);
     history.push({
       pathname: path,
     });
@@ -26,7 +24,6 @@ const SearchBar = (props) => {
 
   return (
     <>
-      {console.log("Nama:" + query)}
       <div className="container-fluid">
         <div className="search-box d-flex justify-content-center">
           <form
@@ -35,7 +32,7 @@ const SearchBar = (props) => {
           >
             <div className="form-group col-md-10">
               <input
-                id="query"
+                id="tags"
                 type="text"
                 placeholder="What are you looking for?"
                 className="form-control form-control-underlined"
